@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta name="ximity-build" content="31">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050505">
@@ -2486,6 +2490,71 @@ html.layout-mobile #experienceCanvas .route-intel-pill{
   #experienceCanvas .route-intel-step small{font-size:4px}
 }
 
+
+/* ============================================================
+   v31 — hero lock
+   Keep the v20 proportions, but prevent DRIVE TOGETHER. wrapping.
+   ============================================================ */
+
+#experienceCanvas .hero h1 .ghost{
+  display:block !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+}
+
+/* Exact v20 mobile hero sizing */
+html.layout-mobile #experienceCanvas .hero-center{
+  width:354px !important;
+  top:48% !important;
+  max-height:none !important;
+}
+html.layout-mobile #experienceCanvas .hero-eyebrow{
+  margin-bottom:28px !important;
+  font-size:7px !important;
+  letter-spacing:.15em !important;
+}
+html.layout-mobile #experienceCanvas .hero h1{
+  font-size:70px !important;
+  line-height:.79 !important;
+  letter-spacing:-.07em !important;
+}
+html.layout-mobile #experienceCanvas .hero h1 .ghost{
+  font-size:70px !important;
+  line-height:.79 !important;
+  letter-spacing:-.07em !important;
+}
+html.layout-mobile #experienceCanvas .hero-sub{
+  width:320px !important;
+  margin-top:30px !important;
+  font-size:13px !important;
+  line-height:1.55 !important;
+}
+
+/* Same fallback before JS finishes device classification */
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .hero-center{
+    width:354px !important;
+    top:48% !important;
+    max-height:none !important;
+  }
+  #experienceCanvas .hero h1,
+  #experienceCanvas .hero h1 .ghost{
+    font-size:70px !important;
+    line-height:.79 !important;
+    letter-spacing:-.07em !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    white-space:nowrap !important;
+  }
+  #experienceCanvas .hero-sub{
+    width:320px !important;
+    margin-top:30px !important;
+    font-size:13px !important;
+    line-height:1.55 !important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -3217,6 +3286,33 @@ setPageBackground(sceneBackground(current));
     kicker.innerHTML='<strong>It doesn’t just route cars.</strong><span>It routes the convoy.</span>';
     p.insertAdjacentElement('afterend',kicker);
   }
+})();
+
+
+
+/* XIMITY build freshness check.
+   Keeps the plain domain usable while preventing a browser/webview from
+   sitting on an older cached HTML build after future deployments. */
+(()=>{
+  const BUILD='31';
+  const marker=document.querySelector('meta[name="ximity-build"]');
+  if(!marker || location.protocol==='file:') return;
+
+  const checkUrl = location.pathname +
+    (location.pathname.includes('?') ? '&' : '?') +
+    '_ximity_check=' + Date.now();
+
+  fetch(checkUrl,{cache:'no-store'})
+    .then(r => r.ok ? r.text() : Promise.reject())
+    .then(t => {
+      const m=t.match(/<meta\s+name=["']ximity-build["']\s+content=["']([^"']+)["']/i);
+      if(!m || m[1]===BUILD) return;
+
+      const u=new URL(location.href);
+      u.searchParams.set('v',m[1]);
+      location.replace(u.toString());
+    })
+    .catch(()=>{});
 })();
 
 </script>
