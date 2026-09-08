@@ -1,72 +1,3 @@
-Sunday 12:52 AM
-Screenshot_2026-09-06-00-51-07-194_com.google.android.gm.jpg
-
-Today 11:17 AM
-Pasted text(8).txt
-Document
-this is what we got to earlier
-
-Screen Recording 2026-09-08 103257(1).mp4
-File
-nice, but the drivers are still drifing off to spcae. ive also included how would like the page to behave, u see how theyve completely ridded off the look that the page actually scroll and used animations and same coloured backgrounds to mask, while also displaying the features very interactivly, like at at the end, while show casing the colours, they flick between the colurs but animate it so its a smooth transition, i want the website itself to be an experience for the user
-
-Analysis paused
-
-Yep — I see what you mean from the recording. You don’t want a normal site that happens to have animations; you want it to feel like one continuous product demo, where scrolling is almost invisible and each feature transforms into the next.
-
-I’ve pushed the preview further in that direction. The driver markers are now locked to the actual SVG route path, so they shouldn’t wander off-road anymore. I also changed the scene transitions so they don’t visibly “slide pages” up and down; they now use scaling, blur and masked fades on the same visual stage.
-
-I also added a new driver identity scene where the colour changes smoothly between each driver rather than just swapping instantly, and kept the multi-stop/pinned-location scene after it.
-
-Preview XIMITY Experience v3
-
-The direction I’d keep pushing is exactly what you described: every section should demonstrate the feature rather than explain it. So group routing actually converges, proximity voice actually connects/disconnects, live convoy actually moves, colours actually morph, multi-stop should eventually animate somebody adding/reordering stops, and pinning should physically drop a pin onto the map.
-
-That’s the difference between a decent startup landing page and something where someone spends two minutes on it just because the website itself is interesting.
-ximity-experience-v3.htmlHTML
-
-Yep — I found the actual bug this time.
-
-The page itself was full-screen, but the generic reveal animation was overwriting the centering transforms on the page 6 elements. So once the animation finished, the heading/orbit/palette all lost their translateX(-50%) centering and shifted into the right half of the viewport.
-
-I fixed the transforms properly and checked the element positions at 1440×900 — they’re centred now.
-
-Open XIMITY Experience v5
-ximity-experience-v5.htmlHTML
-
-I found the source of that flash. Page 6 still had a 1.1-second background transition, while the outer viewport was changing immediately. That meant the centre and the unused corner could briefly show different colour states.
-
-I’ve removed that completely now. In v16, the page background, outer viewport, driver colour, name/code and active swatch all change in the same frame. There’s no fade between background colours, no black transition curtain, and when you leave page 6 it switches back to black immediately. Returning to page 6 also resets it to the first Sky state before the scene appears.
-
-Open XIMITY Experience v16
-ximity-experience-v16-instant-colour-sync.htmlHTML
-
-keeep thee transition time to make it nice and smooth and apply that to the background as well, the right balack side is still a problem tho, mainly the bottom right, the top right is perfect and belnds but the bottom right doiesnt
-
-Yep — I found a more fundamental issue this time.
-
-There were still old page-6 rules using 100vw/100dvh inside the scaled 1440×900 canvas, which could create exactly the weird bottom-right mismatch you were seeing. I removed those completely.
-
-I’ve also restored the smooth colour transition and made the entire physical viewport use the exact same duration and easing as page 6. The page background, extra side space, and driver colour now all transition together instead of one changing before the other.
-
-I also added a dedicated full-screen colour layer behind the experience so the bottom-right corner can’t fall through to some old black canvas/body background anymore.
-
-Open XIMITY Experience v17
-ximity-experience-v17-smooth-full-background.htmlHTML
-
-ebebd6ac-6673-4606-b594-37d46c60815c.png
-the black is still doing its thing bruh
-
-Yeah, I see it now — the screenshot made the actual problem obvious.
-
-The black wasn’t really a “side bar” anymore. The centre artboard had its own subtle radial gradient, while the extra viewport area only had the flat base colour. That’s why the top-right could look fine but the bottom-right visibly broke away.
-
-I’ve changed the structure so there is now one single full-screen background plane for the entire viewport. The scaled 1440×900 layout no longer paints its own separate dark background or ambient gradient; it only carries the content. The gradient now spans the physical screen continuously, including the spare side area.
-
-The smooth page-6 colour transitions are still there, but the whole viewport transitions as one surface.
-
-Open XIMITY Experience v18
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -1770,7 +1701,5 @@ setPageBackground(sceneBackground(current));
 </div>
 </body>
 </html>
-
-ximity-experience-v18-unified-background.htmlHTML
 
 
