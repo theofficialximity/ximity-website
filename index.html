@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="ximity-build" content="31">
+  <meta name="ximity-build" content="33">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -2555,6 +2555,244 @@ html.layout-mobile #experienceCanvas .hero-sub{
   }
 }
 
+
+/* v32 — portrait DRIVE TOGETHER containment fix
+   XIMITY keeps the v20 scale. Only the outlined line is sized to fit
+   the portrait artboard, so it cannot widen the page boundaries. */
+html.layout-mobile #experienceCanvas .hero h1 .ghost{
+  font-size:45px !important;
+  line-height:.88 !important;
+  letter-spacing:-.055em !important;
+  width:100% !important;
+  max-width:354px !important;
+  box-sizing:border-box !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+}
+
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .hero h1 .ghost{
+    font-size:45px !important;
+    line-height:.88 !important;
+    letter-spacing:-.055em !important;
+    width:100% !important;
+    max-width:354px !important;
+    box-sizing:border-box !important;
+    white-space:nowrap !important;
+    overflow:visible !important;
+  }
+}
+
+/* Horizontal/landscape layout remains untouched. */
+
+
+/* ============================================================
+   v33 — short landscape-phone containment
+   Scenes 0, 5 and 7 intentionally untouched.
+   ============================================================ */
+
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="1"] .manifesto-inner{
+  width:860px !important;
+  height:auto !important;
+  padding-top:72px !important;
+  transform:none !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="1"] .scene-index{
+  padding-top:0 !important;
+  margin-bottom:12px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="1"] .manifesto h2{
+  font-size:54px !important;
+  line-height:.86 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="1"] .manifesto-note{
+  margin-top:18px !important;
+  font-size:10px !important;
+  line-height:1.45 !important;
+}
+
+/* Product scenes: move everything upward and shrink vertically so the
+   actual visual viewport/browser chrome cannot clip the lower edge. */
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .product-copy,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="3"] .product-copy,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="4"] .product-copy{
+  top:54px !important;
+  width:840px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .product-copy .tag,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="3"] .product-copy .tag,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="4"] .product-copy .tag{
+  margin-bottom:8px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .product-copy h2,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="3"] .product-copy h2,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="4"] .product-copy h2{
+  font-size:43px !important;
+  line-height:.86 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .product-copy p,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="3"] .product-copy p,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="4"] .product-copy p{
+  width:520px !important;
+  margin-top:7px !important;
+  font-size:9.5px !important;
+  line-height:1.38 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .routing-kicker{
+  margin-top:7px !important;
+  font-size:8px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .routing-proof{
+  margin-top:6px !important;
+  font-size:5.5px !important;
+}
+
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .product-frame,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="4"] .live-ui{
+  top:244px !important;
+  width:710px !important;
+  height:212px !important;
+  min-height:0 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="3"] .voice-space{
+  top:244px !important;
+  width:690px !important;
+  height:205px !important;
+  min-height:0 !important;
+}
+
+/* Keep routing-intelligence overlay compact enough for the shallower frame. */
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .rejoin-demo{
+  top:12px !important;
+  right:12px !important;
+  width:180px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .route-intel-step{
+  padding:6px 8px !important;
+  margin-top:4px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .route-intel-step small{
+  display:none !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"] .route-intel-pill{
+  margin-top:5px !important;
+}
+
+/* Planning / penultimate scene:
+   Explicitly beat the generic <=800px mobile rule which was turning this
+   into one column / hiding or stacking cards in landscape. */
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-stage{
+  width:840px !important;
+  top:52px !important;
+  transform:translateX(-50%) !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-head{
+  margin-bottom:0 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-head .tag{
+  margin-bottom:7px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-head h2{
+  font-size:42px !important;
+  line-height:.86 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:12px !important;
+  margin-top:12px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-card,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-card:nth-child(2){
+  display:block !important;
+  height:205px !important;
+  min-height:205px !important;
+  padding:14px !important;
+  border-radius:18px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-card h3{
+  margin-bottom:4px !important;
+  font-size:12px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .plan-card p{
+  font-size:9px !important;
+  line-height:1.35 !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .stop-list{
+  left:14px !important;
+  right:14px !important;
+  bottom:12px !important;
+  gap:6px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .stop-row{
+  padding:7px 9px !important;
+  gap:8px !important;
+  border-radius:10px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .stop-num{
+  width:19px !important;
+  height:19px !important;
+  font-size:6px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .stop-row span:last-child{
+  font-size:8px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="6"] .pin-map{
+  left:14px !important;
+  right:14px !important;
+  top:auto !important;
+  bottom:12px !important;
+  height:96px !important;
+  border-radius:12px !important;
+}
+
+/* Same protection before JS classification finishes. */
+@media (orientation:landscape) and (max-height:650px){
+  #experienceCanvas .scene[data-scene="6"] .plan-grid{
+    grid-template-columns:1fr 1fr !important;
+  }
+  #experienceCanvas .scene[data-scene="6"] .plan-card:nth-child(2){
+    display:block !important;
+  }
+}
+
+/* Restored social follow CTA. */
+.social-follow{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin-top:16px;
+}
+.social-follow a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:104px;
+  padding:9px 13px;
+  border:1px solid rgba(5,5,5,.18);
+  border-radius:999px;
+  color:inherit;
+  text-decoration:none;
+  font-size:8px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:transform .25s ease, background .25s ease;
+}
+.social-follow a:hover{
+  transform:translateY(-2px);
+  background:rgba(5,5,5,.05);
+}
+html.layout-mobile #experienceCanvas .social-follow{
+  margin-top:13px;
+  gap:8px;
+}
+html.layout-mobile #experienceCanvas .social-follow a{
+  min-width:92px;
+  padding:8px 10px;
+  font-size:7px;
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -2747,7 +2985,11 @@ html.layout-mobile #experienceCanvas .hero-sub{
       <h2 class="big reveal">XIMITY<span>keep the drive together.</span></h2>
       <div class="finale-copy reveal delay1">
         <p>Built for the roads you take with other people.</p>
-        <a href="#">THEOFFICIALXIMITY • COMING SOON</a>
+        <a href="https://www.instagram.com/theofficialximity/" target="_blank" rel="noopener noreferrer">THEOFFICIALXIMITY • COMING SOON</a>
+        <div class="social-follow" aria-label="Follow XIMITY">
+          <a href="https://www.instagram.com/theofficialximity/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.tiktok.com/@theofficialximity" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
       </div>
     </div>
   </section>
@@ -3294,7 +3536,7 @@ setPageBackground(sceneBackground(current));
    Keeps the plain domain usable while preventing a browser/webview from
    sitting on an older cached HTML build after future deployments. */
 (()=>{
-  const BUILD='31';
+  const BUILD='33';
   const marker=document.querySelector('meta[name="ximity-build"]');
   if(!marker || location.protocol==='file:') return;
 
