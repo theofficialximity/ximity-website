@@ -1150,6 +1150,667 @@ body{
   isolation:isolate;
 }
 
+
+/* ============================================================
+   v19 — device-specific cinematic compositions
+   Desktop remains exactly as designed.
+   Portrait phones/tablets and short landscape phones get their
+   own fixed artboards, then scale uniformly to the real viewport.
+   ============================================================ */
+
+:root{
+  --canvas-w:1440px;
+  --canvas-h:900px;
+}
+
+/* ---------- PORTRAIT PHONE: 390 × 844 ---------- */
+html.layout-mobile #experienceCanvas{
+  width:390px !important;
+  height:844px !important;
+}
+html.layout-mobile #experienceCanvas .deck,
+html.layout-mobile #experienceCanvas .scene,
+html.layout-mobile #experienceCanvas .scene[data-scene="5"],
+html.layout-mobile #experienceCanvas .identity-stage{
+  width:390px !important;
+  height:844px !important;
+  min-width:390px !important;
+  min-height:844px !important;
+}
+
+html.layout-mobile #experienceCanvas .nav{
+  position:absolute !important;
+  width:390px !important;
+  height:56px !important;
+}
+html.layout-mobile #experienceCanvas .nav-inner{
+  width:354px !important;
+}
+html.layout-mobile #experienceCanvas .logo{
+  font-size:10px !important;
+}
+html.layout-mobile #experienceCanvas .nav-right{
+  display:none !important;
+}
+html.layout-mobile #experienceCanvas .scene-meter{
+  position:absolute !important;
+  right:14px !important;
+  top:auto !important;
+  bottom:16px !important;
+  transform:none !important;
+  flex-direction:row !important;
+  gap:6px !important;
+  align-items:center !important;
+}
+html.layout-mobile #experienceCanvas .scene-meter button{
+  gap:0 !important;
+}
+html.layout-mobile #experienceCanvas .scene-meter button span{
+  display:none !important;
+}
+html.layout-mobile #experienceCanvas .scene-meter i{
+  width:12px !important;
+  height:2px !important;
+}
+html.layout-mobile #experienceCanvas .scene-meter button.active i{
+  width:28px !important;
+}
+
+/* mobile hero */
+html.layout-mobile #experienceCanvas .hero-center{
+  width:354px !important;
+  top:48% !important;
+  max-height:none !important;
+}
+html.layout-mobile #experienceCanvas .hero-eyebrow{
+  margin-bottom:28px !important;
+  font-size:7px !important;
+  letter-spacing:.15em !important;
+}
+html.layout-mobile #experienceCanvas .hero h1{
+  font-size:70px !important;
+  line-height:.79 !important;
+  letter-spacing:-.07em !important;
+}
+html.layout-mobile #experienceCanvas .hero-sub{
+  width:320px !important;
+  margin-top:30px !important;
+  font-size:13px !important;
+  line-height:1.55 !important;
+}
+html.layout-mobile #experienceCanvas .hero-scroll{
+  bottom:24px !important;
+  font-size:7px !important;
+}
+
+/* mobile manifesto */
+html.layout-mobile #experienceCanvas .manifesto-inner{
+  width:350px !important;
+  max-height:none !important;
+  display:block !important;
+  padding:0 8px !important;
+  top:49% !important;
+}
+html.layout-mobile #experienceCanvas .scene-index{
+  display:flex !important;
+  justify-content:flex-start !important;
+  margin:0 0 24px 0 !important;
+  padding:0 !important;
+}
+html.layout-mobile #experienceCanvas .manifesto h2{
+  font-size:50px !important;
+  line-height:.9 !important;
+  letter-spacing:-.06em !important;
+}
+html.layout-mobile #experienceCanvas .manifesto-note{
+  width:300px !important;
+  margin:34px 0 0 44px !important;
+  text-align:left !important;
+  font-size:12px !important;
+  line-height:1.62 !important;
+}
+
+/* mobile feature scenes */
+html.layout-mobile #experienceCanvas .scene[data-scene="2"],
+html.layout-mobile #experienceCanvas .scene[data-scene="3"],
+html.layout-mobile #experienceCanvas .scene[data-scene="4"]{
+  display:block !important;
+  padding:0 !important;
+}
+html.layout-mobile #experienceCanvas .product-copy{
+  position:absolute !important;
+  left:50% !important;
+  top:86px !important;
+  width:350px !important;
+  transform:translateX(-50%) !important;
+}
+html.layout-mobile #experienceCanvas .product-copy .tag{
+  margin-bottom:14px !important;
+  font-size:7px !important;
+}
+html.layout-mobile #experienceCanvas .product-copy h2{
+  font-size:43px !important;
+  line-height:.9 !important;
+  letter-spacing:-.06em !important;
+}
+html.layout-mobile #experienceCanvas .product-copy p{
+  width:320px !important;
+  margin-top:14px !important;
+  font-size:11.5px !important;
+  line-height:1.5 !important;
+}
+
+/* group routing */
+html.layout-mobile #experienceCanvas .product-frame{
+  position:absolute !important;
+  left:20px !important;
+  top:390px !important;
+  width:350px !important;
+  height:360px !important;
+  min-height:0 !important;
+  transform:none !important;
+  border-radius:22px !important;
+}
+html.layout-mobile #experienceCanvas .car-badge{
+  transform:translate(-50%,-50%) scale(.82) !important;
+  transform-origin:center !important;
+}
+html.layout-mobile #experienceCanvas .map-meta,
+html.layout-mobile #experienceCanvas .map-meta-r{
+  bottom:14px !important;
+  font-size:6.5px !important;
+}
+
+/* proximity voice */
+html.layout-mobile #experienceCanvas .voice-space{
+  position:absolute !important;
+  left:20px !important;
+  top:385px !important;
+  width:350px !important;
+  height:365px !important;
+  min-height:0 !important;
+  transform:none !important;
+}
+html.layout-mobile #experienceCanvas .node{
+  width:80px !important;
+  height:80px !important;
+}
+html.layout-mobile #experienceCanvas .node:before{
+  inset:-16px !important;
+}
+html.layout-mobile #experienceCanvas .node:after{
+  inset:-32px !important;
+}
+html.layout-mobile #experienceCanvas .core{
+  width:30px !important;
+  height:30px !important;
+}
+html.layout-mobile #experienceCanvas .node-label{
+  bottom:8px !important;
+  font-size:6px !important;
+}
+html.layout-mobile #experienceCanvas .prox-caption,
+html.layout-mobile #experienceCanvas .prox-caption-r{
+  font-size:6.5px !important;
+}
+
+/* live convoy */
+html.layout-mobile #experienceCanvas .live-ui{
+  position:absolute !important;
+  left:20px !important;
+  top:392px !important;
+  width:350px !important;
+  height:358px !important;
+  min-height:0 !important;
+  transform:none !important;
+  border-radius:22px !important;
+}
+html.layout-mobile #experienceCanvas .live-sidebar{
+  width:92px !important;
+  padding:17px 9px !important;
+}
+html.layout-mobile #experienceCanvas .live-map{
+  left:92px !important;
+}
+html.layout-mobile #experienceCanvas .side-title{
+  font-size:6px !important;
+  margin-bottom:14px !important;
+}
+html.layout-mobile #experienceCanvas .member{
+  gap:7px !important;
+  padding:10px 0 !important;
+}
+html.layout-mobile #experienceCanvas .member-copy strong{
+  font-size:8px !important;
+}
+html.layout-mobile #experienceCanvas .member-copy span{
+  display:none !important;
+}
+html.layout-mobile #experienceCanvas .live-banner{
+  top:14px !important;
+  padding:8px 10px !important;
+  font-size:6px !important;
+}
+html.layout-mobile #experienceCanvas .live-tag{
+  font-size:6px !important;
+  padding:4px 6px !important;
+}
+
+/* mobile identity */
+html.layout-mobile #experienceCanvas .identity-copy{
+  top:94px !important;
+  width:350px !important;
+}
+html.layout-mobile #experienceCanvas .identity-copy .tag{
+  margin-bottom:14px !important;
+  font-size:7px !important;
+}
+html.layout-mobile #experienceCanvas .identity-copy h2{
+  font-size:44px !important;
+  line-height:.9 !important;
+}
+html.layout-mobile #experienceCanvas .identity-copy p{
+  max-width:310px !important;
+  margin-top:14px !important;
+  font-size:11.5px !important;
+}
+html.layout-mobile #experienceCanvas .identity-orbit{
+  top:520px !important;
+  width:340px !important;
+  height:300px !important;
+}
+html.layout-mobile #experienceCanvas .identity-palette{
+  bottom:72px !important;
+}
+html.layout-mobile #experienceCanvas .identity-scroll-cue{
+  right:18px !important;
+  bottom:22px !important;
+  font-size:6.5px !important;
+}
+
+/* mobile planning */
+html.layout-mobile #experienceCanvas .plan-stage{
+  width:350px !important;
+  height:auto !important;
+  top:78px !important;
+}
+html.layout-mobile #experienceCanvas .plan-head{
+  margin-bottom:18px !important;
+}
+html.layout-mobile #experienceCanvas .plan-head .tag{
+  margin-bottom:14px !important;
+  font-size:7px !important;
+}
+html.layout-mobile #experienceCanvas .plan-head h2{
+  font-size:43px !important;
+  line-height:.9 !important;
+}
+html.layout-mobile #experienceCanvas .plan-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:12px !important;
+  margin-top:22px !important;
+}
+html.layout-mobile #experienceCanvas .plan-card{
+  min-height:232px !important;
+  height:232px !important;
+  padding:18px !important;
+  border-radius:18px !important;
+}
+html.layout-mobile #experienceCanvas .plan-card h3{
+  font-size:12px !important;
+}
+html.layout-mobile #experienceCanvas .plan-card p{
+  font-size:9px !important;
+  line-height:1.45 !important;
+}
+html.layout-mobile #experienceCanvas .stop-list{
+  left:18px !important;
+  right:18px !important;
+  bottom:16px !important;
+}
+html.layout-mobile #experienceCanvas .stop-row{
+  height:33px !important;
+  font-size:8px !important;
+}
+html.layout-mobile #experienceCanvas .stop-num{
+  width:20px !important;
+  height:20px !important;
+}
+html.layout-mobile #experienceCanvas .pin-map{
+  left:18px !important;
+  right:18px !important;
+  bottom:16px !important;
+  height:112px !important;
+}
+
+/* mobile finale */
+html.layout-mobile #experienceCanvas .finale-center{
+  width:350px !important;
+  max-height:none !important;
+}
+html.layout-mobile #experienceCanvas .finale .big{
+  font-size:76px !important;
+  line-height:.78 !important;
+}
+html.layout-mobile #experienceCanvas .finale-copy{
+  margin-top:34px !important;
+}
+html.layout-mobile #experienceCanvas .finale-copy p{
+  font-size:12px !important;
+}
+
+
+/* ---------- PORTRAIT TABLET: 768 × 1024 ---------- */
+html.layout-tablet #experienceCanvas{
+  width:768px !important;
+  height:1024px !important;
+}
+html.layout-tablet #experienceCanvas .deck,
+html.layout-tablet #experienceCanvas .scene,
+html.layout-tablet #experienceCanvas .scene[data-scene="5"],
+html.layout-tablet #experienceCanvas .identity-stage{
+  width:768px !important;
+  height:1024px !important;
+  min-width:768px !important;
+  min-height:1024px !important;
+}
+html.layout-tablet #experienceCanvas .nav{
+  position:absolute !important;
+  width:768px !important;
+}
+html.layout-tablet #experienceCanvas .nav-inner{
+  width:712px !important;
+}
+html.layout-tablet #experienceCanvas .scene-meter{
+  position:absolute !important;
+  right:18px !important;
+}
+html.layout-tablet #experienceCanvas .hero-center{
+  width:690px !important;
+}
+html.layout-tablet #experienceCanvas .hero h1{
+  font-size:108px !important;
+}
+html.layout-tablet #experienceCanvas .hero-sub{
+  width:520px !important;
+  font-size:16px !important;
+}
+html.layout-tablet #experienceCanvas .manifesto-inner{
+  width:690px !important;
+  display:block !important;
+}
+html.layout-tablet #experienceCanvas .scene-index{
+  margin-bottom:30px !important;
+}
+html.layout-tablet #experienceCanvas .manifesto h2{
+  font-size:76px !important;
+}
+html.layout-tablet #experienceCanvas .manifesto-note{
+  width:460px !important;
+  margin:42px 0 0 190px !important;
+  font-size:14px !important;
+}
+html.layout-tablet #experienceCanvas .scene[data-scene="2"],
+html.layout-tablet #experienceCanvas .scene[data-scene="3"],
+html.layout-tablet #experienceCanvas .scene[data-scene="4"]{
+  display:block !important;
+  padding:0 !important;
+}
+html.layout-tablet #experienceCanvas .product-copy{
+  top:112px !important;
+  width:690px !important;
+}
+html.layout-tablet #experienceCanvas .product-copy h2{
+  font-size:70px !important;
+}
+html.layout-tablet #experienceCanvas .product-copy p{
+  width:520px !important;
+  font-size:14px !important;
+}
+html.layout-tablet #experienceCanvas .product-frame{
+  left:59px !important;
+  top:472px !important;
+  width:650px !important;
+  height:430px !important;
+  transform:none !important;
+}
+html.layout-tablet #experienceCanvas .voice-space{
+  left:59px !important;
+  top:470px !important;
+  width:650px !important;
+  height:430px !important;
+  transform:none !important;
+}
+html.layout-tablet #experienceCanvas .live-ui{
+  left:59px !important;
+  top:472px !important;
+  width:650px !important;
+  height:430px !important;
+  transform:none !important;
+}
+html.layout-tablet #experienceCanvas .live-sidebar{
+  width:155px !important;
+  padding:24px 16px !important;
+}
+html.layout-tablet #experienceCanvas .live-map{
+  left:155px !important;
+}
+html.layout-tablet #experienceCanvas .identity-copy{
+  top:116px !important;
+  width:690px !important;
+}
+html.layout-tablet #experienceCanvas .identity-copy h2{
+  font-size:70px !important;
+}
+html.layout-tablet #experienceCanvas .identity-orbit{
+  top:625px !important;
+  width:650px !important;
+  height:360px !important;
+}
+html.layout-tablet #experienceCanvas .identity-palette{
+  bottom:74px !important;
+}
+html.layout-tablet #experienceCanvas .plan-stage{
+  width:690px !important;
+  top:104px !important;
+}
+html.layout-tablet #experienceCanvas .plan-head h2{
+  font-size:70px !important;
+}
+html.layout-tablet #experienceCanvas .plan-grid{
+  grid-template-columns:1fr 1fr !important;
+  gap:14px !important;
+  margin-top:34px !important;
+}
+html.layout-tablet #experienceCanvas .plan-card{
+  min-height:350px !important;
+  height:350px !important;
+  padding:24px !important;
+}
+html.layout-tablet #experienceCanvas .finale-center{
+  width:690px !important;
+}
+html.layout-tablet #experienceCanvas .finale .big{
+  font-size:112px !important;
+}
+
+
+/* ---------- SHORT LANDSCAPE PHONE: 960 × 540 ---------- */
+html.layout-landscape-phone #experienceCanvas{
+  width:960px !important;
+  height:540px !important;
+}
+html.layout-landscape-phone #experienceCanvas .deck,
+html.layout-landscape-phone #experienceCanvas .scene,
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="5"],
+html.layout-landscape-phone #experienceCanvas .identity-stage{
+  width:960px !important;
+  height:540px !important;
+  min-width:960px !important;
+  min-height:540px !important;
+}
+html.layout-landscape-phone #experienceCanvas .nav{
+  position:absolute !important;
+  width:960px !important;
+  height:48px !important;
+}
+html.layout-landscape-phone #experienceCanvas .nav-inner{
+  width:900px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene-meter{
+  display:none !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero-center{
+  width:850px !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero h1{
+  font-size:105px !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero-sub{
+  width:500px !important;
+  margin-top:22px !important;
+  font-size:13px !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero-eyebrow{
+  margin-bottom:18px !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero-scroll{
+  bottom:14px !important;
+}
+html.layout-landscape-phone #experienceCanvas .manifesto-inner{
+  width:860px !important;
+}
+html.layout-landscape-phone #experienceCanvas .manifesto h2{
+  font-size:62px !important;
+}
+html.layout-landscape-phone #experienceCanvas .manifesto-note{
+  font-size:11px !important;
+  margin-top:24px !important;
+}
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="2"],
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="3"],
+html.layout-landscape-phone #experienceCanvas .scene[data-scene="4"]{
+  display:block !important;
+  padding:0 !important;
+}
+html.layout-landscape-phone #experienceCanvas .product-copy{
+  top:62px !important;
+  width:850px !important;
+}
+html.layout-landscape-phone #experienceCanvas .product-copy h2{
+  font-size:50px !important;
+}
+html.layout-landscape-phone #experienceCanvas .product-copy p{
+  width:510px !important;
+  margin-top:10px !important;
+  font-size:10.5px !important;
+}
+html.layout-landscape-phone #experienceCanvas .product-frame,
+html.layout-landscape-phone #experienceCanvas .live-ui{
+  top:270px !important;
+  width:720px !important;
+  height:235px !important;
+  min-height:0 !important;
+}
+html.layout-landscape-phone #experienceCanvas .voice-space{
+  top:270px !important;
+  width:700px !important;
+  height:225px !important;
+  min-height:0 !important;
+}
+html.layout-landscape-phone #experienceCanvas .node{
+  width:72px !important;
+  height:72px !important;
+}
+html.layout-landscape-phone #experienceCanvas .node:before{inset:-14px !important}
+html.layout-landscape-phone #experienceCanvas .node:after{inset:-28px !important}
+html.layout-landscape-phone #experienceCanvas .core{
+  width:27px !important;
+  height:27px !important;
+}
+html.layout-landscape-phone #experienceCanvas .live-sidebar{
+  width:125px !important;
+  padding:15px 12px !important;
+}
+html.layout-landscape-phone #experienceCanvas .live-map{
+  left:125px !important;
+}
+html.layout-landscape-phone #experienceCanvas .member{
+  padding:7px 0 !important;
+}
+html.layout-landscape-phone #experienceCanvas .member-copy strong{
+  font-size:8px !important;
+}
+html.layout-landscape-phone #experienceCanvas .member-copy span{
+  display:none !important;
+}
+html.layout-landscape-phone #experienceCanvas .identity-copy{
+  top:60px !important;
+  width:800px !important;
+}
+html.layout-landscape-phone #experienceCanvas .identity-copy h2{
+  font-size:50px !important;
+}
+html.layout-landscape-phone #experienceCanvas .identity-copy p{
+  margin-top:9px !important;
+  font-size:10px !important;
+}
+html.layout-landscape-phone #experienceCanvas .identity-orbit{
+  top:340px !important;
+  width:560px !important;
+  height:220px !important;
+}
+html.layout-landscape-phone #experienceCanvas .identity-palette{
+  bottom:28px !important;
+}
+html.layout-landscape-phone #experienceCanvas .identity-scroll-cue{
+  bottom:14px !important;
+}
+html.layout-landscape-phone #experienceCanvas .plan-stage{
+  width:820px !important;
+  top:58px !important;
+}
+html.layout-landscape-phone #experienceCanvas .plan-head{
+  margin-bottom:8px !important;
+}
+html.layout-landscape-phone #experienceCanvas .plan-head h2{
+  font-size:50px !important;
+}
+html.layout-landscape-phone #experienceCanvas .plan-grid{
+  margin-top:16px !important;
+}
+html.layout-landscape-phone #experienceCanvas .plan-card{
+  min-height:235px !important;
+  height:235px !important;
+  padding:18px !important;
+}
+html.layout-landscape-phone #experienceCanvas .stop-list{
+  left:18px !important;
+  right:18px !important;
+  bottom:14px !important;
+}
+html.layout-landscape-phone #experienceCanvas .pin-map{
+  left:18px !important;
+  right:18px !important;
+  bottom:14px !important;
+  height:118px !important;
+}
+html.layout-landscape-phone #experienceCanvas .finale .big{
+  font-size:105px !important;
+}
+html.layout-landscape-phone #experienceCanvas .finale-copy{
+  margin-top:24px !important;
+}
+
+
+/* Touch devices: keep tap targets comfortable without changing the visual language. */
+html.layout-mobile button,
+html.layout-tablet button{
+  min-width:32px;
+  min-height:32px;
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -1674,22 +2335,80 @@ document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',e
   apply(0,false);
 })();
 
-/* Scale the fixed 1440×900 composition to the largest size that fully fits. */
+/* Adaptive artboards.
+   We do not "squash" the desktop page. Each device family gets a deliberate
+   composition, and that composition is then uniformly scaled to fit. */
 (()=>{
+  const root=document.documentElement;
   const canvas=document.getElementById('experienceCanvas');
-  const DESIGN_W=1440;
-  const DESIGN_H=900;
+  const heroCue=document.querySelector('.hero-scroll');
+  const identityCue=document.querySelector('.identity-scroll-cue');
+
+  let mode='desktop';
+  let designW=1440;
+  let designH=900;
+
+  function chooseArtboard(){
+    const w=window.innerWidth;
+    const h=window.innerHeight;
+    const portrait=h>=w;
+
+    root.classList.remove('layout-mobile','layout-tablet','layout-landscape-phone');
+
+    if(portrait && w<=600){
+      mode='mobile';
+      designW=390;
+      designH=844;
+      root.classList.add('layout-mobile');
+    }else if(portrait && w<=1100){
+      mode='tablet';
+      designW=768;
+      designH=1024;
+      root.classList.add('layout-tablet');
+    }else if(!portrait && h<=600){
+      mode='landscape-phone';
+      designW=960;
+      designH=540;
+      root.classList.add('layout-landscape-phone');
+    }else{
+      mode='desktop';
+      designW=1440;
+      designH=900;
+    }
+
+    root.style.setProperty('--canvas-w',designW+'px');
+    root.style.setProperty('--canvas-h',designH+'px');
+
+    if(heroCue){
+      heroCue.lastChild.textContent = mode==='desktop' ? 'Scroll' : 'Swipe';
+    }
+    if(identityCue){
+      identityCue.lastChild.textContent = mode==='desktop' ? 'Scroll to change' : 'Swipe to change';
+    }
+  }
 
   function fitExperience(){
+    chooseArtboard();
+
     const scale=Math.min(
-      window.innerWidth / DESIGN_W,
-      window.innerHeight / DESIGN_H
+      window.innerWidth / designW,
+      window.innerHeight / designH
     );
+
     canvas.style.setProperty('--experience-scale',scale);
   }
 
-  addEventListener('resize',fitExperience,{passive:true});
-  addEventListener('orientationchange',fitExperience,{passive:true});
+  let resizeTimer=null;
+  function queueFit(){
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(fitExperience,40);
+  }
+
+  addEventListener('resize',queueFit,{passive:true});
+  addEventListener('orientationchange',()=>{
+    setTimeout(fitExperience,80);
+  },{passive:true});
+
   fitExperience();
 })();
 
@@ -1701,5 +2420,3 @@ setPageBackground(sceneBackground(current));
 </div>
 </body>
 </html>
-
-
