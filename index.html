@@ -2352,6 +2352,84 @@ html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
   }
 }
 
+
+/* ============================================================
+   v28 — glyph-stroke cleanup
+   The collision is inside the outlined DRIVE TOGETHER glyphs,
+   not just between letters. Thin the outline and relax tracking
+   while preserving the tall proportions from v27.
+   ============================================================ */
+
+#experienceCanvas .hero h1{
+  letter-spacing:-.038em !important;
+  font-kerning:normal !important;
+}
+
+/* Outline line: lighter/thinner stroke so counters and joins in
+   H, R, G, E etc. stay visibly separate. */
+#experienceCanvas .hero h1 .ghost{
+  letter-spacing:-.010em !important;
+  font-weight:570 !important;
+  -webkit-text-stroke:.72px rgba(241,239,233,.30) !important;
+  paint-order:stroke fill !important;
+}
+
+/* Phone */
+html.layout-mobile #experienceCanvas .hero h1{
+  letter-spacing:-.032em !important;
+}
+html.layout-mobile #experienceCanvas .hero h1 .ghost{
+  font-size:41px !important;
+  letter-spacing:-.006em !important;
+  font-weight:560 !important;
+  -webkit-text-stroke:.52px rgba(241,239,233,.32) !important;
+  transform:scaleY(1.14) !important;
+  margin-top:16px !important;
+}
+
+/* Tablet */
+html.layout-tablet #experienceCanvas .hero h1 .ghost{
+  letter-spacing:-.008em !important;
+  font-weight:560 !important;
+  -webkit-text-stroke:.65px rgba(241,239,233,.31) !important;
+}
+
+/* Short landscape phone */
+html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
+  letter-spacing:-.008em !important;
+  font-weight:560 !important;
+  -webkit-text-stroke:.62px rgba(241,239,233,.31) !important;
+}
+
+/* Fallback media rules */
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .hero h1{
+    letter-spacing:-.032em !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    font-size:41px !important;
+    letter-spacing:-.006em !important;
+    font-weight:560 !important;
+    -webkit-text-stroke:.52px rgba(241,239,233,.32) !important;
+    transform:scaleY(1.14) !important;
+    margin-top:16px !important;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+  #experienceCanvas .hero h1 .ghost{
+    letter-spacing:-.008em !important;
+    -webkit-text-stroke:.65px rgba(241,239,233,.31) !important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:650px){
+  #experienceCanvas .hero h1 .ghost{
+    letter-spacing:-.008em !important;
+    -webkit-text-stroke:.62px rgba(241,239,233,.31) !important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
