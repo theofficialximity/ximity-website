@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="ximity-build" content="54">
+  <meta name="ximity-build" content="56">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -9,6 +9,24 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050505">
 <title>XIMITY — Drive Together</title>
+
+  <meta name="description" content="XIMITY is group-aware navigation for people who drive together — live convoy awareness, intelligent group routing and proximity voice.">
+  <meta name="theme-color" content="#08090b">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://ximity.app/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="XIMITY">
+  <meta property="og:title" content="XIMITY — Drive Together">
+  <meta property="og:description" content="Group-aware navigation, live convoy awareness and proximity voice.">
+  <meta property="og:url" content="https://ximity.app/">
+  <meta property="og:image" content="https://ximity.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="XIMITY — Drive Together">
+  <meta name="twitter:description" content="Navigation understands the group. Voice understands proximity.">
+  <meta name="twitter:image" content="https://ximity.app/og-image.png">
+
 <style>
 :root{
   --bg:#050505;--ink:#f1efe9;--muted:#85827b;--line:rgba(255,255,255,.105);
@@ -4697,6 +4715,17 @@ html.layout-landscape-phone{
   --phone-swipe-note:1;
 }
 
+
+/* v56 — launch extras only. No loader, no navigation overrides. */
+.launch-status{margin:10px 0 12px;font-size:8px;letter-spacing:1.7px;text-transform:uppercase;color:rgba(241,239,233,.52)}
+.launch-status span{opacity:.45;margin:0 4px}
+.beta-cta{display:inline-flex!important;align-items:center;justify-content:center;min-width:150px;height:38px;padding:0 18px;margin:2px 0 8px;border:1px solid rgba(241,239,233,.44);border-radius:999px;color:#f1efe9!important;text-decoration:none!important;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.beta-note{margin:0 0 10px;font-size:8px;line-height:1.45;color:rgba(241,239,233,.43)}
+.beta-note strong{font-weight:700;color:rgba(241,239,233,.7);letter-spacing:.6px}
+.legal-links{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:12px;font-size:7px;letter-spacing:1.15px;text-transform:uppercase;opacity:.42}
+.legal-links a{color:inherit;text-decoration:none}
+@media(max-width:600px){.launch-status{font-size:7px;margin:8px 0 9px}.beta-cta{height:35px;min-width:140px;font-size:8px}.beta-note{font-size:7px;margin-bottom:8px}.legal-links{margin-top:8px;font-size:6.5px}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -5051,10 +5080,15 @@ html.layout-landscape-phone{
       <h2 class="big reveal">XIMITY<span>keep the drive together.</span></h2>
       <div class="finale-copy reveal delay1">
         <p>Built for the roads you take with other people.</p>
-        <a href="https://www.instagram.com/theofficialximity/" target="_blank" rel="noopener noreferrer">THEOFFICIALXIMITY • COMING SOON</a>
+        <div class="launch-status">IN DEVELOPMENT <span>•</span> PRIVATE BETA COMING SOON</div>
+        <a class="beta-cta" href="https://www.instagram.com/theofficialximity/" target="_blank" rel="noopener noreferrer">JOIN THE BETA</a>
+        <div class="beta-note">Follow XIMITY and message <strong>BETA</strong> to register interest.</div>
         <div class="social-follow" aria-label="Follow XIMITY">
           <a href="https://www.instagram.com/theofficialximity/" target="_blank" rel="noopener noreferrer">Instagram</a>
           <a href="https://www.tiktok.com/@theofficialximity" target="_blank" rel="noopener noreferrer">TikTok</a>
+        </div>
+        <div class="legal-links">
+          <a href="/privacy.html">Privacy</a><span>•</span><a href="/terms.html">Terms</a>
         </div>
       </div>
     </div>
@@ -5671,7 +5705,7 @@ setPageBackground(sceneBackground(current));
    Keeps the plain domain usable while preventing a browser/webview from
    sitting on an older cached HTML build after future deployments. */
 (()=>{
-  const BUILD='54';
+  const BUILD='56';
   const marker=document.querySelector('meta[name="ximity-build"]');
   if(!marker || location.protocol==='file:') return;
 
