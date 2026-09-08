@@ -2207,6 +2207,151 @@ html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
   }
 }
 
+
+/* ============================================================
+   v26 — safe hero type refinement
+   Built from v24. No scaleX/max-content tricks.
+   Fix glyph collisions by relaxing tracking, then shorten
+   DRIVE TOGETHER with a slightly smaller font size.
+   ============================================================ */
+
+/* Main XIMITY wordmark: reduce negative tracking enough to stop
+   diagonal/vertical strokes (especially R-like joins in the font)
+   from visually crashing into neighbouring glyphs. */
+#experienceCanvas .hero h1{
+  letter-spacing:-.048em !important;
+  font-kerning:normal !important;
+}
+
+/* DRIVE TOGETHER: keep it compact without distorting glyph shapes. */
+#experienceCanvas .hero h1 .ghost{
+  letter-spacing:-.032em !important;
+  font-kerning:normal !important;
+}
+
+/* Phone */
+html.layout-mobile #experienceCanvas .hero h1{
+  letter-spacing:-.044em !important;
+}
+html.layout-mobile #experienceCanvas .hero h1 .ghost{
+  font-size:40px !important;
+  letter-spacing:-.028em !important;
+  margin-top:13px !important;
+}
+
+/* Tablet */
+html.layout-tablet #experienceCanvas .hero h1{
+  letter-spacing:-.046em !important;
+}
+html.layout-tablet #experienceCanvas .hero h1 .ghost{
+  font-size:72px !important;
+  letter-spacing:-.03em !important;
+}
+
+/* Short landscape phones */
+html.layout-landscape-phone #experienceCanvas .hero h1{
+  letter-spacing:-.046em !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
+  font-size:70px !important;
+  letter-spacing:-.03em !important;
+}
+
+/* CSS fallback if JS classification is late. */
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .hero h1{
+    letter-spacing:-.044em !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    font-size:40px !important;
+    letter-spacing:-.028em !important;
+    margin-top:13px !important;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+  #experienceCanvas .hero h1{
+    letter-spacing:-.046em !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    font-size:72px !important;
+    letter-spacing:-.03em !important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:650px){
+  #experienceCanvas .hero h1{
+    letter-spacing:-.046em !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    font-size:70px !important;
+    letter-spacing:-.03em !important;
+  }
+}
+
+
+/* ============================================================
+   v27 — restore tall display proportions
+   Keep the safer spacing from v26, but bring back the taller,
+   more dramatic letterforms by stretching vertically only.
+   Width and spacing stay unchanged.
+   ============================================================ */
+
+#experienceCanvas .hero h1{
+  transform:scaleY(1.08) !important;
+  transform-origin:center center !important;
+}
+
+#experienceCanvas .hero h1 .ghost{
+  transform:scaleY(1.10) !important;
+  transform-origin:center top !important;
+}
+
+/* Phone: slightly stronger vertical presence. */
+html.layout-mobile #experienceCanvas .hero h1{
+  transform:scaleY(1.12) !important;
+}
+html.layout-mobile #experienceCanvas .hero h1 .ghost{
+  transform:scaleY(1.14) !important;
+  margin-top:16px !important;
+}
+
+/* Tablet */
+html.layout-tablet #experienceCanvas .hero h1{
+  transform:scaleY(1.10) !important;
+}
+html.layout-tablet #experienceCanvas .hero h1 .ghost{
+  transform:scaleY(1.12) !important;
+}
+
+/* Short landscape */
+html.layout-landscape-phone #experienceCanvas .hero h1{
+  transform:scaleY(1.08) !important;
+}
+html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
+  transform:scaleY(1.10) !important;
+}
+
+/* CSS fallback */
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .hero h1{
+    transform:scaleY(1.12) !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    transform:scaleY(1.14) !important;
+    margin-top:16px !important;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+  #experienceCanvas .hero h1{
+    transform:scaleY(1.10) !important;
+  }
+  #experienceCanvas .hero h1 .ghost{
+    transform:scaleY(1.12) !important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
