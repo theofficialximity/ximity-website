@@ -2117,6 +2117,96 @@ body,
   50%{opacity:1}
 }
 
+
+/* ============================================================
+   v24 — hero typography stability
+   Keep DRIVE TOGETHER on one line and size it independently
+   from XIMITY so narrow viewports never squash/wrap/overlap.
+   ============================================================ */
+
+#experienceCanvas .hero h1,
+#experienceCanvas .hero h1 .ghost{
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+}
+
+#experienceCanvas .hero h1 .ghost{
+  line-height:1.02 !important;
+  letter-spacing:-.055em !important;
+  transform:none !important;
+}
+
+/* Phone portrait */
+html.layout-mobile #experienceCanvas .hero h1{
+  font-size:72px !important;
+  line-height:.84 !important;
+  letter-spacing:-.065em !important;
+}
+
+html.layout-mobile #experienceCanvas .hero h1 .ghost{
+  font-size:43px !important;
+  line-height:1.06 !important;
+  letter-spacing:-.045em !important;
+  margin-top:12px !important;
+}
+
+/* Tablet portrait */
+html.layout-tablet #experienceCanvas .hero h1{
+  font-size:110px !important;
+  line-height:.84 !important;
+}
+
+html.layout-tablet #experienceCanvas .hero h1 .ghost{
+  font-size:76px !important;
+  line-height:1.04 !important;
+  margin-top:14px !important;
+}
+
+/* Short landscape phones */
+html.layout-landscape-phone #experienceCanvas .hero h1{
+  font-size:104px !important;
+  line-height:.82 !important;
+}
+
+html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
+  font-size:74px !important;
+  line-height:1.03 !important;
+  margin-top:10px !important;
+}
+
+/* CSS-only fallbacks for browsers where JS device classification is delayed. */
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .hero h1{
+    font-size:72px !important;
+    line-height:.84 !important;
+    letter-spacing:-.065em !important;
+  }
+
+  #experienceCanvas .hero h1 .ghost{
+    font-size:43px !important;
+    line-height:1.06 !important;
+    letter-spacing:-.045em !important;
+    margin-top:12px !important;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+  #experienceCanvas .hero h1 .ghost{
+    font-size:76px !important;
+    line-height:1.04 !important;
+    margin-top:14px !important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:650px){
+  #experienceCanvas .hero h1 .ghost{
+    font-size:74px !important;
+    line-height:1.03 !important;
+    margin-top:10px !important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
