@@ -1811,6 +1811,124 @@ html.layout-tablet button{
   min-height:32px;
 }
 
+
+/* v20 — CSS fallback for real devices.
+   These rules force the mobile/tablet artboard even if an embedded browser reports
+   an unusually large window.innerWidth. */
+
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas{
+    width:390px !important;
+    height:844px !important;
+  }
+  #experienceCanvas .deck,
+  #experienceCanvas .scene,
+  #experienceCanvas .scene[data-scene="5"],
+  #experienceCanvas .identity-stage{
+    width:390px !important;
+    height:844px !important;
+    min-width:390px !important;
+    min-height:844px !important;
+  }
+
+  #experienceCanvas .nav{
+    width:390px !important;
+    height:56px !important;
+  }
+  #experienceCanvas .nav-inner{width:354px !important}
+  #experienceCanvas .nav-right{display:none !important}
+
+  #experienceCanvas .hero-center{width:354px !important;top:48% !important}
+  #experienceCanvas .hero h1{font-size:70px !important;line-height:.79 !important}
+  #experienceCanvas .hero-sub{width:320px !important;font-size:13px !important}
+
+  #experienceCanvas .manifesto-inner{width:350px !important;display:block !important}
+  #experienceCanvas .manifesto h2{font-size:50px !important;line-height:.9 !important}
+  #experienceCanvas .manifesto-note{width:300px !important;margin:34px 0 0 44px !important}
+
+  #experienceCanvas .scene[data-scene="2"],
+  #experienceCanvas .scene[data-scene="3"],
+  #experienceCanvas .scene[data-scene="4"]{
+    display:block !important;
+    padding:0 !important;
+  }
+  #experienceCanvas .product-copy{
+    left:50% !important;
+    top:86px !important;
+    width:350px !important;
+    transform:translateX(-50%) !important;
+  }
+  #experienceCanvas .product-copy h2{font-size:43px !important}
+  #experienceCanvas .product-copy p{width:320px !important;font-size:11.5px !important}
+
+  #experienceCanvas .product-frame{
+    left:20px !important;
+    top:390px !important;
+    width:350px !important;
+    height:360px !important;
+    transform:none !important;
+  }
+  #experienceCanvas .voice-space{
+    left:20px !important;
+    top:385px !important;
+    width:350px !important;
+    height:365px !important;
+    transform:none !important;
+  }
+  #experienceCanvas .live-ui{
+    left:20px !important;
+    top:392px !important;
+    width:350px !important;
+    height:358px !important;
+    transform:none !important;
+  }
+
+  #experienceCanvas .identity-copy{top:94px !important;width:350px !important}
+  #experienceCanvas .identity-copy h2{font-size:44px !important}
+  #experienceCanvas .identity-orbit{top:520px !important;width:340px !important;height:300px !important}
+  #experienceCanvas .identity-palette{bottom:72px !important}
+
+  #experienceCanvas .plan-stage{width:350px !important;top:78px !important}
+  #experienceCanvas .plan-head h2{font-size:43px !important}
+  #experienceCanvas .plan-grid{grid-template-columns:1fr !important;gap:12px !important}
+  #experienceCanvas .plan-card{height:232px !important;min-height:232px !important}
+
+  #experienceCanvas .finale-center{width:350px !important}
+  #experienceCanvas .finale .big{font-size:76px !important}
+}
+
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+  #experienceCanvas{
+    width:768px !important;
+    height:1024px !important;
+  }
+  #experienceCanvas .deck,
+  #experienceCanvas .scene,
+  #experienceCanvas .scene[data-scene="5"],
+  #experienceCanvas .identity-stage{
+    width:768px !important;
+    height:1024px !important;
+    min-width:768px !important;
+    min-height:1024px !important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:650px){
+  #experienceCanvas{
+    width:960px !important;
+    height:540px !important;
+  }
+  #experienceCanvas .deck,
+  #experienceCanvas .scene,
+  #experienceCanvas .scene[data-scene="5"],
+  #experienceCanvas .identity-stage{
+    width:960px !important;
+    height:540px !important;
+    min-width:960px !important;
+    min-height:540px !important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -2349,13 +2467,48 @@ document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',e
   let designH=900;
 
   function chooseArtboard(){
-    const w=window.innerWidth;
-    const h=window.innerHeight;
+    const vv=window.visualViewport;
+
+    const widthCandidates=[
+      window.innerWidth,
+      vv?.width,
+      window.screen?.width
+    ].filter(v=>Number.isFinite(v) && v>0);
+
+    const heightCandidates=[
+      window.innerHeight,
+      vv?.height,
+      window.screen?.height
+    ].filter(v=>Number.isFinite(v) && v>0);
+
+    const w=Math.min(...widthCandidates);
+    const h=Math.min(...heightCandidates);
     const portrait=h>=w;
+
+    const ua=navigator.userAgent || '';
+    const touchLike=('ontouchstart' in window) || navigator.maxTouchPoints>0;
+    const phoneUA=/Android|iPhone|iPod|Mobile/i.test(ua);
+    const tabletUA=/iPad|Tablet/i.test(ua);
 
     root.classList.remove('layout-mobile','layout-tablet','layout-landscape-phone');
 
-    if(portrait && w<=600){
+    /* Prefer physical/mobile signals over iframe width. */
+    if((phoneUA || (touchLike && Math.min(w,h)<=600)) && portrait){
+      mode='mobile';
+      designW=390;
+      designH=844;
+      root.classList.add('layout-mobile');
+    }else if((tabletUA || (touchLike && Math.min(w,h)<=1100)) && portrait){
+      mode='tablet';
+      designW=768;
+      designH=1024;
+      root.classList.add('layout-tablet');
+    }else if((phoneUA || touchLike) && !portrait && h<=650){
+      mode='landscape-phone';
+      designW=960;
+      designH=540;
+      root.classList.add('layout-landscape-phone');
+    }else if(portrait && w<=600){
       mode='mobile';
       designW=390;
       designH=844;
@@ -2365,7 +2518,7 @@ document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',e
       designW=768;
       designH=1024;
       root.classList.add('layout-tablet');
-    }else if(!portrait && h<=600){
+    }else if(!portrait && h<=650){
       mode='landscape-phone';
       designW=960;
       designH=540;
@@ -2390,9 +2543,19 @@ document.querySelectorAll('[data-go]').forEach(el=>el.addEventListener('click',e
   function fitExperience(){
     chooseArtboard();
 
+    const vv=window.visualViewport;
+    const usableW=Math.min(
+      ...[window.innerWidth,vv?.width,window.screen?.width]
+        .filter(v=>Number.isFinite(v) && v>0)
+    );
+    const usableH=Math.min(
+      ...[window.innerHeight,vv?.height,window.screen?.height]
+        .filter(v=>Number.isFinite(v) && v>0)
+    );
+
     const scale=Math.min(
-      window.innerWidth / designW,
-      window.innerHeight / designH
+      usableW / designW,
+      usableH / designH
     );
 
     canvas.style.setProperty('--experience-scale',scale);
