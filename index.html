@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="ximity-build" content="53">
+  <meta name="ximity-build" content="54">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -4689,6 +4689,14 @@ html.layout-landscape-phone .scene-meter button.identity-meter i{
   letter-spacing:1.65px !important;
 }
 
+
+/* v54 — phone-only scroll pacing.
+   Layout, desktop navigation, themes, markers and scene positions are untouched. */
+html.layout-mobile,
+html.layout-landscape-phone{
+  --phone-swipe-note:1;
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -5100,7 +5108,7 @@ function updateIdentityMeter(index,count){
   b.style.setProperty('--identity-progress',`${progress}%`);
 }
 const wash=document.getElementById('wash');
-let current=0,touchY=null,transitionSeq=0,lastWheelNav=0;
+let current=0,touchY=null,transitionSeq=0,lastWheelNav=0,lastPhoneNav=0;
 requestAnimationFrame(()=>updateSceneMeter());
 
 
@@ -5222,6 +5230,14 @@ let touchCurrentY=null;
 let touchTriggered=false;
 
 function handleTouchDirection(dir){
+  const phoneMode=document.documentElement.classList.contains('layout-mobile') ||
+                  document.documentElement.classList.contains('layout-landscape-phone');
+  if(phoneMode){
+    const now=performance.now();
+    if(now-lastPhoneNav<380)return false;
+    lastPhoneNav=now;
+  }
+
   if(current===5 && window.getIdentityIndex){
     const i=window.getIdentityIndex();
     const count=window.getIdentityCount();
@@ -5256,7 +5272,10 @@ addEventListener('touchmove',e=>{
   /* Own the vertical gesture because the document itself never scrolls. */
   if(Math.abs(dy)>4)e.preventDefault();
 
-  if(!touchTriggered && Math.abs(dy)>=24){
+  const phoneMode=document.documentElement.classList.contains('layout-mobile') ||
+                    document.documentElement.classList.contains('layout-landscape-phone');
+  const swipeThreshold=phoneMode?34:24;
+  if(!touchTriggered && Math.abs(dy)>=swipeThreshold){
     touchTriggered=true;
     handleTouchDirection(dy>0?1:-1);
   }
@@ -5652,7 +5671,7 @@ setPageBackground(sceneBackground(current));
    Keeps the plain domain usable while preventing a browser/webview from
    sitting on an older cached HTML build after future deployments. */
 (()=>{
-  const BUILD='53';
+  const BUILD='54';
   const marker=document.querySelector('meta[name="ximity-build"]');
   if(!marker || location.protocol==='file:') return;
 
