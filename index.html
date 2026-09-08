@@ -2119,315 +2119,371 @@ body,
 
 
 /* ============================================================
-   v24 — hero typography stability
-   Keep DRIVE TOGETHER on one line and size it independently
-   from XIMITY so narrow viewports never squash/wrap/overlap.
+   v29 — product story upgrade
+   Preserve the stable v22 visuals/typography while making the
+   routing differentiation explicit and demonstrable.
    ============================================================ */
 
-#experienceCanvas .hero h1,
-#experienceCanvas .hero h1 .ghost{
-  white-space:nowrap !important;
-  word-break:keep-all !important;
-  overflow-wrap:normal !important;
+.routing-proof{
+  margin-top:18px;
+  font-size:7px;
+  letter-spacing:.16em;
+  color:rgba(241,239,233,.42);
+  white-space:nowrap;
+}
+.routing-proof span{
+  margin:0 7px;
+  color:rgba(142,220,255,.65);
 }
 
-#experienceCanvas .hero h1 .ghost{
-  line-height:1.02 !important;
-  letter-spacing:-.055em !important;
+.rejoin-demo{
+  position:absolute;
+  right:24px;
+  top:24px;
+  z-index:8;
+  width:188px;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(8px);
+  animation:rejoinReveal 8s cubic-bezier(.2,.8,.2,1) infinite;
+}
+.rejoin-status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 12px;
+  border:1px solid rgba(241,239,233,.12);
+  border-radius:12px;
+  background:rgba(5,5,5,.76);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.rejoin-dot{
+  width:7px;
+  height:7px;
+  flex:0 0 auto;
+  border-radius:50%;
+  background:#caa7ff;
+  box-shadow:0 0 14px rgba(202,167,255,.6);
+}
+.rejoin-status b{
+  display:block;
+  font-size:7px;
+  letter-spacing:.12em;
+  color:rgba(241,239,233,.9);
+}
+.rejoin-status small{
+  display:block;
+  margin-top:4px;
+  font-size:6px;
+  letter-spacing:.12em;
+  color:rgba(202,167,255,.78);
+}
+.rejoin-line{
+  width:1px;
+  height:17px;
+  margin-left:20px;
+  background:linear-gradient(rgba(202,167,255,.6),transparent);
+}
+.rejoin-pill{
+  display:inline-block;
+  margin-left:7px;
+  padding:6px 8px;
+  border-radius:999px;
+  border:1px solid rgba(142,220,255,.16);
+  background:rgba(8,12,15,.78);
+  font-size:5.5px;
+  letter-spacing:.13em;
+  color:rgba(142,220,255,.76);
+}
+@keyframes rejoinReveal{
+  0%,34%{opacity:0;transform:translateY(8px)}
+  43%,76%{opacity:1;transform:translateY(0)}
+  86%,100%{opacity:0;transform:translateY(-4px)}
+}
+
+/* The routing map gets a subtle "decision" pulse when the rejoin state appears. */
+.scene[data-scene="2"] .product-frame::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:7;
+  pointer-events:none;
+  border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(202,167,255,0);
+  animation:routeDecisionPulse 8s ease infinite;
+}
+@keyframes routeDecisionPulse{
+  0%,38%,82%,100%{box-shadow:inset 0 0 0 1px rgba(202,167,255,0)}
+  48%,68%{box-shadow:inset 0 0 0 1px rgba(202,167,255,.13)}
+}
+
+/* Phone */
+html.layout-mobile #experienceCanvas .routing-proof{
+  margin-top:10px;
+  font-size:5.2px;
+  letter-spacing:.09em;
+  white-space:normal;
+  line-height:1.7;
+  width:320px;
+}
+html.layout-mobile #experienceCanvas .routing-proof span{
+  margin:0 4px;
+}
+html.layout-mobile #experienceCanvas .rejoin-demo{
+  right:12px;
+  top:12px;
+  width:145px;
+}
+html.layout-mobile #experienceCanvas .rejoin-status{
+  gap:7px;
+  padding:8px 9px;
+  border-radius:9px;
+}
+html.layout-mobile #experienceCanvas .rejoin-status b{
+  font-size:5.4px;
+}
+html.layout-mobile #experienceCanvas .rejoin-status small{
+  font-size:4.8px;
+}
+html.layout-mobile #experienceCanvas .rejoin-line{
+  height:12px;
+  margin-left:16px;
+}
+html.layout-mobile #experienceCanvas .rejoin-pill{
+  font-size:4.5px;
+  padding:5px 7px;
+}
+
+/* Tablet */
+html.layout-tablet #experienceCanvas .routing-proof{
+  font-size:6px;
+}
+html.layout-tablet #experienceCanvas .rejoin-demo{
+  width:170px;
+}
+
+/* CSS fallback before JS device classification */
+@media (max-width:600px) and (orientation:portrait){
+  #experienceCanvas .routing-proof{
+    margin-top:10px;
+    font-size:5.2px;
+    letter-spacing:.09em;
+    white-space:normal;
+    line-height:1.7;
+    width:320px;
+  }
+  #experienceCanvas .rejoin-demo{
+    right:12px;
+    top:12px;
+    width:145px;
+  }
+  #experienceCanvas .rejoin-status{
+    gap:7px;
+    padding:8px 9px;
+  }
+  #experienceCanvas .rejoin-status b{font-size:5.4px}
+  #experienceCanvas .rejoin-status small{font-size:4.8px}
+}
+
+
+/* ============================================================
+   v30 — flagship intelligent-routing story
+   ============================================================ */
+
+.routing-kicker{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  margin-top:18px;
+  font-size:11px;
+  line-height:1.15;
+  letter-spacing:-.01em;
+}
+.routing-kicker strong{
+  color:rgba(241,239,233,.44);
+  font-weight:500;
+}
+.routing-kicker span{
+  color:rgba(241,239,233,.96);
+  font-weight:650;
+}
+
+.rejoin-demo{
+  width:220px !important;
+  opacity:1 !important;
   transform:none !important;
+  animation:none !important;
 }
 
-/* Phone portrait */
-html.layout-mobile #experienceCanvas .hero h1{
-  font-size:72px !important;
-  line-height:.84 !important;
-  letter-spacing:-.065em !important;
+.route-intel-head{
+  margin-bottom:8px;
+  font-size:5.8px;
+  letter-spacing:.16em;
+  color:rgba(241,239,233,.38);
+  text-align:right;
 }
 
-html.layout-mobile #experienceCanvas .hero h1 .ghost{
-  font-size:43px !important;
-  line-height:1.06 !important;
-  letter-spacing:-.045em !important;
-  margin-top:12px !important;
+.route-intel-step{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:7px;
+  padding:9px 10px;
+  border:1px solid rgba(241,239,233,.09);
+  border-radius:10px;
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0;
+  transform:translateY(5px);
 }
 
-/* Tablet portrait */
-html.layout-tablet #experienceCanvas .hero h1{
-  font-size:110px !important;
-  line-height:.84 !important;
+.route-intel-step b{
+  display:block;
+  font-size:6.4px;
+  letter-spacing:.105em;
+  color:rgba(241,239,233,.9);
+}
+.route-intel-step small{
+  display:block;
+  margin-top:3px;
+  font-size:5.3px;
+  letter-spacing:.07em;
+  color:rgba(241,239,233,.42);
 }
 
-html.layout-tablet #experienceCanvas .hero h1 .ghost{
-  font-size:76px !important;
-  line-height:1.04 !important;
-  margin-top:14px !important;
+.intel-dot{
+  width:7px;
+  height:7px;
+  flex:0 0 auto;
+  border-radius:50%;
+}
+.intel-dot.sky{
+  background:#8edcff;
+  box-shadow:0 0 12px rgba(142,220,255,.55);
+}
+.intel-dot.amber{
+  background:#ffb86b;
+  box-shadow:0 0 12px rgba(255,184,107,.5);
+}
+.intel-dot.violet{
+  background:#caa7ff;
+  box-shadow:0 0 12px rgba(202,167,255,.55);
 }
 
-/* Short landscape phones */
-html.layout-landscape-phone #experienceCanvas .hero h1{
-  font-size:104px !important;
-  line-height:.82 !important;
+.route-intel-pill{
+  width:max-content;
+  margin:9px 0 0 auto;
+  padding:6px 8px;
+  border:1px solid rgba(142,220,255,.16);
+  border-radius:999px;
+  background:rgba(8,12,15,.82);
+  font-size:5.2px;
+  letter-spacing:.13em;
+  color:rgba(142,220,255,.78);
+  opacity:0;
 }
 
-html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
-  font-size:74px !important;
-  line-height:1.03 !important;
-  margin-top:10px !important;
+/* Sequence sells the intelligence: starts -> convergence -> separation -> adaptation. */
+.scene[data-scene="2"].active .step-a{
+  animation:intelStep 8.8s cubic-bezier(.2,.8,.2,1) infinite;
+  animation-delay:.4s;
+}
+.scene[data-scene="2"].active .step-b{
+  animation:intelStep 8.8s cubic-bezier(.2,.8,.2,1) infinite;
+  animation-delay:1.7s;
+}
+.scene[data-scene="2"].active .step-c{
+  animation:intelStep 8.8s cubic-bezier(.2,.8,.2,1) infinite;
+  animation-delay:3.1s;
+}
+.scene[data-scene="2"].active .route-intel-pill{
+  animation:intelPill 8.8s cubic-bezier(.2,.8,.2,1) infinite;
+  animation-delay:4.2s;
 }
 
-/* CSS-only fallbacks for browsers where JS device classification is delayed. */
+@keyframes intelStep{
+  0%,8%{opacity:0;transform:translateY(5px)}
+  13%,72%{opacity:1;transform:translateY(0)}
+  80%,100%{opacity:0;transform:translateY(-3px)}
+}
+@keyframes intelPill{
+  0%,10%{opacity:0;transform:translateY(3px)}
+  16%,64%{opacity:1;transform:translateY(0)}
+  74%,100%{opacity:0;transform:translateY(-2px)}
+}
+
+/* Give the routing frame a subtle intelligence sweep without changing the core visual. */
+.scene[data-scene="2"] .product-frame .route-scan{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:6;
+  overflow:hidden;
+  border-radius:inherit;
+}
+.scene[data-scene="2"] .product-frame .route-scan::after{
+  content:"";
+  position:absolute;
+  left:-35%;
+  top:0;
+  width:24%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(142,220,255,.045),transparent);
+  transform:skewX(-12deg);
+  animation:routeScan 5.8s ease-in-out infinite;
+}
+@keyframes routeScan{
+  0%,14%{left:-35%;opacity:0}
+  24%{opacity:1}
+  64%{left:120%;opacity:.7}
+  78%,100%{left:120%;opacity:0}
+}
+
+html.layout-mobile #experienceCanvas .routing-kicker{
+  margin-top:9px;
+  font-size:8px;
+}
+html.layout-mobile #experienceCanvas .rejoin-demo{
+  width:155px !important;
+  top:10px !important;
+  right:10px !important;
+}
+html.layout-mobile #experienceCanvas .route-intel-head{
+  font-size:4.3px;
+}
+html.layout-mobile #experienceCanvas .route-intel-step{
+  padding:6px 7px;
+  gap:6px;
+  margin-top:5px;
+  border-radius:8px;
+}
+html.layout-mobile #experienceCanvas .route-intel-step b{
+  font-size:4.7px;
+}
+html.layout-mobile #experienceCanvas .route-intel-step small{
+  font-size:4px;
+}
+html.layout-mobile #experienceCanvas .route-intel-pill{
+  font-size:4px;
+  padding:5px 6px;
+}
+
 @media (max-width:600px) and (orientation:portrait){
-  #experienceCanvas .hero h1{
-    font-size:72px !important;
-    line-height:.84 !important;
-    letter-spacing:-.065em !important;
+  #experienceCanvas .routing-kicker{
+    margin-top:9px;
+    font-size:8px;
   }
-
-  #experienceCanvas .hero h1 .ghost{
-    font-size:43px !important;
-    line-height:1.06 !important;
-    letter-spacing:-.045em !important;
-    margin-top:12px !important;
+  #experienceCanvas .rejoin-demo{
+    width:155px !important;
+    top:10px !important;
+    right:10px !important;
   }
-}
-
-@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
-  #experienceCanvas .hero h1 .ghost{
-    font-size:76px !important;
-    line-height:1.04 !important;
-    margin-top:14px !important;
-  }
-}
-
-@media (orientation:landscape) and (max-height:650px){
-  #experienceCanvas .hero h1 .ghost{
-    font-size:74px !important;
-    line-height:1.03 !important;
-    margin-top:10px !important;
-  }
-}
-
-
-/* ============================================================
-   v26 — safe hero type refinement
-   Built from v24. No scaleX/max-content tricks.
-   Fix glyph collisions by relaxing tracking, then shorten
-   DRIVE TOGETHER with a slightly smaller font size.
-   ============================================================ */
-
-/* Main XIMITY wordmark: reduce negative tracking enough to stop
-   diagonal/vertical strokes (especially R-like joins in the font)
-   from visually crashing into neighbouring glyphs. */
-#experienceCanvas .hero h1{
-  letter-spacing:-.048em !important;
-  font-kerning:normal !important;
-}
-
-/* DRIVE TOGETHER: keep it compact without distorting glyph shapes. */
-#experienceCanvas .hero h1 .ghost{
-  letter-spacing:-.032em !important;
-  font-kerning:normal !important;
-}
-
-/* Phone */
-html.layout-mobile #experienceCanvas .hero h1{
-  letter-spacing:-.044em !important;
-}
-html.layout-mobile #experienceCanvas .hero h1 .ghost{
-  font-size:40px !important;
-  letter-spacing:-.028em !important;
-  margin-top:13px !important;
-}
-
-/* Tablet */
-html.layout-tablet #experienceCanvas .hero h1{
-  letter-spacing:-.046em !important;
-}
-html.layout-tablet #experienceCanvas .hero h1 .ghost{
-  font-size:72px !important;
-  letter-spacing:-.03em !important;
-}
-
-/* Short landscape phones */
-html.layout-landscape-phone #experienceCanvas .hero h1{
-  letter-spacing:-.046em !important;
-}
-html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
-  font-size:70px !important;
-  letter-spacing:-.03em !important;
-}
-
-/* CSS fallback if JS classification is late. */
-@media (max-width:600px) and (orientation:portrait){
-  #experienceCanvas .hero h1{
-    letter-spacing:-.044em !important;
-  }
-  #experienceCanvas .hero h1 .ghost{
-    font-size:40px !important;
-    letter-spacing:-.028em !important;
-    margin-top:13px !important;
-  }
-}
-
-@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
-  #experienceCanvas .hero h1{
-    letter-spacing:-.046em !important;
-  }
-  #experienceCanvas .hero h1 .ghost{
-    font-size:72px !important;
-    letter-spacing:-.03em !important;
-  }
-}
-
-@media (orientation:landscape) and (max-height:650px){
-  #experienceCanvas .hero h1{
-    letter-spacing:-.046em !important;
-  }
-  #experienceCanvas .hero h1 .ghost{
-    font-size:70px !important;
-    letter-spacing:-.03em !important;
-  }
-}
-
-
-/* ============================================================
-   v27 — restore tall display proportions
-   Keep the safer spacing from v26, but bring back the taller,
-   more dramatic letterforms by stretching vertically only.
-   Width and spacing stay unchanged.
-   ============================================================ */
-
-#experienceCanvas .hero h1{
-  transform:scaleY(1.08) !important;
-  transform-origin:center center !important;
-}
-
-#experienceCanvas .hero h1 .ghost{
-  transform:scaleY(1.10) !important;
-  transform-origin:center top !important;
-}
-
-/* Phone: slightly stronger vertical presence. */
-html.layout-mobile #experienceCanvas .hero h1{
-  transform:scaleY(1.12) !important;
-}
-html.layout-mobile #experienceCanvas .hero h1 .ghost{
-  transform:scaleY(1.14) !important;
-  margin-top:16px !important;
-}
-
-/* Tablet */
-html.layout-tablet #experienceCanvas .hero h1{
-  transform:scaleY(1.10) !important;
-}
-html.layout-tablet #experienceCanvas .hero h1 .ghost{
-  transform:scaleY(1.12) !important;
-}
-
-/* Short landscape */
-html.layout-landscape-phone #experienceCanvas .hero h1{
-  transform:scaleY(1.08) !important;
-}
-html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
-  transform:scaleY(1.10) !important;
-}
-
-/* CSS fallback */
-@media (max-width:600px) and (orientation:portrait){
-  #experienceCanvas .hero h1{
-    transform:scaleY(1.12) !important;
-  }
-  #experienceCanvas .hero h1 .ghost{
-    transform:scaleY(1.14) !important;
-    margin-top:16px !important;
-  }
-}
-
-@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
-  #experienceCanvas .hero h1{
-    transform:scaleY(1.10) !important;
-  }
-  #experienceCanvas .hero h1 .ghost{
-    transform:scaleY(1.12) !important;
-  }
-}
-
-
-/* ============================================================
-   v28 — glyph-stroke cleanup
-   The collision is inside the outlined DRIVE TOGETHER glyphs,
-   not just between letters. Thin the outline and relax tracking
-   while preserving the tall proportions from v27.
-   ============================================================ */
-
-#experienceCanvas .hero h1{
-  letter-spacing:-.038em !important;
-  font-kerning:normal !important;
-}
-
-/* Outline line: lighter/thinner stroke so counters and joins in
-   H, R, G, E etc. stay visibly separate. */
-#experienceCanvas .hero h1 .ghost{
-  letter-spacing:-.010em !important;
-  font-weight:570 !important;
-  -webkit-text-stroke:.72px rgba(241,239,233,.30) !important;
-  paint-order:stroke fill !important;
-}
-
-/* Phone */
-html.layout-mobile #experienceCanvas .hero h1{
-  letter-spacing:-.032em !important;
-}
-html.layout-mobile #experienceCanvas .hero h1 .ghost{
-  font-size:41px !important;
-  letter-spacing:-.006em !important;
-  font-weight:560 !important;
-  -webkit-text-stroke:.52px rgba(241,239,233,.32) !important;
-  transform:scaleY(1.14) !important;
-  margin-top:16px !important;
-}
-
-/* Tablet */
-html.layout-tablet #experienceCanvas .hero h1 .ghost{
-  letter-spacing:-.008em !important;
-  font-weight:560 !important;
-  -webkit-text-stroke:.65px rgba(241,239,233,.31) !important;
-}
-
-/* Short landscape phone */
-html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
-  letter-spacing:-.008em !important;
-  font-weight:560 !important;
-  -webkit-text-stroke:.62px rgba(241,239,233,.31) !important;
-}
-
-/* Fallback media rules */
-@media (max-width:600px) and (orientation:portrait){
-  #experienceCanvas .hero h1{
-    letter-spacing:-.032em !important;
-  }
-  #experienceCanvas .hero h1 .ghost{
-    font-size:41px !important;
-    letter-spacing:-.006em !important;
-    font-weight:560 !important;
-    -webkit-text-stroke:.52px rgba(241,239,233,.32) !important;
-    transform:scaleY(1.14) !important;
-    margin-top:16px !important;
-  }
-}
-
-@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
-  #experienceCanvas .hero h1 .ghost{
-    letter-spacing:-.008em !important;
-    -webkit-text-stroke:.65px rgba(241,239,233,.31) !important;
-  }
-}
-
-@media (orientation:landscape) and (max-height:650px){
-  #experienceCanvas .hero h1 .ghost{
-    letter-spacing:-.008em !important;
-    -webkit-text-stroke:.62px rgba(241,239,233,.31) !important;
-  }
+  #experienceCanvas .route-intel-head{font-size:4.3px}
+  #experienceCanvas .route-intel-step{padding:6px 7px;gap:6px;margin-top:5px}
+  #experienceCanvas .route-intel-step b{font-size:4.7px}
+  #experienceCanvas .route-intel-step small{font-size:4px}
 }
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -2485,7 +2541,7 @@ html.layout-landscape-phone #experienceCanvas .hero h1 .ghost{
   <section class="scene dark" data-scene="2">
     <div class="product-copy reveal">
       <div class="tag micro"><span class="rule"></span>GROUP ROUTING<span class="rule"></span></div>
-      <h2>START APART.<br>ARRIVE TOGETHER.</h2>
+      <h2>THE ROUTE<br>UNDERSTANDS THE CONVOY.</h2>
       <p>Every driver can begin somewhere different. XIMITY finds the natural points where the routes converge, then keeps the convoy moving as one.</p>
     </div>
     <div class="product-frame reveal delay2" id="routeMap">
@@ -3145,6 +3201,22 @@ setPageBackground(sceneBackground(current));
   };
   surface.addEventListener('pointerup',finish);
   surface.addEventListener('pointercancel',finish);
+})();
+
+
+/* Product-story enhancement: make XIMITY's routing intelligence explicit
+   without changing the scene architecture. */
+(()=>{
+  const routing=document.querySelector('.scene[data-scene="2"] .product-copy');
+  if(!routing)return;
+  const p=routing.querySelector('p');
+  if(p){
+    p.textContent='Normal navigation gives every car its own route. XIMITY reasons about the group — where everyone starts, when it makes sense to merge, what happens when the convoy splits, and where a separated driver should rejoin.';
+    const kicker=document.createElement('div');
+    kicker.className='routing-kicker';
+    kicker.innerHTML='<strong>It doesn’t just route cars.</strong><span>It routes the convoy.</span>';
+    p.insertAdjacentElement('afterend',kicker);
+  }
 })();
 
 </script>
